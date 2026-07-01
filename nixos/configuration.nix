@@ -5,7 +5,14 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       <nixos-hardware/framework/13-inch/amd-ai-300-series>
+      <home-manager/nixos>
     ];
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.jens = import ../home-manager/home.nix;
+  };
 
 programs.niri.enable = true;
 programs.dms-shell = {
@@ -96,6 +103,8 @@ programs.dms-shell = {
     packages = with pkgs; [
     #  thunderbird
     ];
+    # Needed for home-manager to manage this user
+    home = "/home/jens";
   };
 
   # Install firefox.
@@ -114,14 +123,8 @@ programs.dms-shell = {
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   wget
-  google-chrome
-  ghostty
-  bitwarden-desktop
-  zotero
-  vscode.fhs
   apple-cursor
   git
-  opencode
   ];
 
 xdg.portal = {
