@@ -81,6 +81,18 @@ programs.dms-shell = {
     variant = "";
   };
 
+  # Fingerprint reader
+  services.fprintd.enable = true;
+  security.pam.services = {
+    login.fprintAuth = true;
+    sudo.fprintAuth = true;
+  };
+  systemd.services.fprintd.environment.FPRINTD_CONF = "/etc/fprintd.conf";
+  environment.etc."fprintd.conf".text = ''
+    [fprintd]
+    Timeout=3
+  '';
+
   # Tailscale
   services.tailscale.enable = true;
 
