@@ -12,12 +12,30 @@
     vscode.fhs
     opencode
     zsh-autocomplete
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
+
+  fonts.fontconfig.enable = true;
 
   programs.git = {
     enable = true;
     userName = "Jens Birk Andersen";
     userEmail = "jens.birk.andersen@gmail.com";
+  };
+
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   programs.zsh = {
@@ -27,7 +45,7 @@
 
     oh-my-zsh = {
       enable = true;
-      theme = "robbyrussell";
+      theme = "refined";
       plugins = [
         "git"
         "history"
