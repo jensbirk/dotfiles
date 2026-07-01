@@ -84,14 +84,13 @@ programs.dms-shell = {
   # Fingerprint reader
   services.fprintd.enable = true;
   security.pam.services = {
-    login.fprintAuth = lib.mkForce true;
-    sudo.fprintAuth = true;
+    login.rules.auth = [
+      { order = 1000; control = "sufficient"; module = "pam_fprintd.so"; args = ["timeout=3"]; }
+    ];
+    sudo.rules.auth = [
+      { order = 1000; control = "sufficient"; module = "pam_fprintd.so"; args = ["timeout=3"]; }
+    ];
   };
-  systemd.services.fprintd.environment.FPRINTD_CONF = "/etc/fprintd.conf";
-  environment.etc."fprintd.conf".text = ''
-    [fprintd]
-    Timeout=3
-  '';
 
   # Tailscale
   services.tailscale.enable = true;

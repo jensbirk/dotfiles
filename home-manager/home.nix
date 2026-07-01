@@ -15,6 +15,7 @@ in
     vscode.fhs
     opencode
     zsh-autocomplete
+    spotify
   ] ++ [ pkgs.nerd-fonts.jetbrains-mono ];
 
   fonts.fontconfig.enable = true;
