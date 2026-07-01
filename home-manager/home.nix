@@ -31,6 +31,58 @@ in
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
+    settings = {
+      add_newline = false;
+      character = {
+        success_symbol = "[❯](bold green)";
+        error_symbol = "[❯](bold red)";
+      };
+      directory = {
+        truncation_length = 3;
+        style = "bold cyan";
+      };
+      git_branch = {
+        style = "bold bright-cyan";
+        format = "on [$symbol$branch]($style) ";
+      };
+      git_status = {
+        style = "bold yellow";
+        conflicted = "🏵 ";
+        ahead = "⇡\${count}";
+        behind = "⇣\${count}";
+        diverged = "⇕\${count}";
+        stashed = "📦 ";
+        modified = "!";
+        staged = "+\${count}";
+        renamed = "»";
+        deleted = "✕";
+      };
+      nodejs = {
+        style = "bold green";
+        format = "via [$symbol($version )]($style)";
+      };
+      rust = {
+        style = "bold red";
+        format = "via [$symbol($version )]($style)";
+      };
+      python = {
+        style = "bold yellow";
+        format = "via [$symbol($version )]($style)";
+      };
+      nix_shell = {
+        style = "bold blue";
+        symbol = "❄️ ";
+        format = "[$symbol$state( \($name\))]($style) ";
+      };
+      cmd_duration = {
+        style = "bold yellow";
+        format = "⏱️ [$duration]($style) ";
+      };
+      line_break.disabled = false;
+      format = ''
+        [╭─](bold bright-black)$all
+        [╰─](bold bright-black)$character'';
+    };
   };
 
   programs.zoxide = {
