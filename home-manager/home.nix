@@ -11,18 +11,33 @@
     zotero
     vscode.fhs
     opencode
+    zsh-autocomplete
   ];
 
   programs.git = {
     enable = true;
-    userName = "Jens Birk";
-    userEmail = "jens@birk.one";
+    userName = "Jens Birk Andersen";
+    userEmail = "jens.birk.andersen@gmail.com";
   };
 
-  programs.bash = {
+  programs.zsh = {
     enable = true;
+    autosuggestion.enable = true;
+    enableCompletion = true;
+
+    oh-my-zsh = {
+      enable = true;
+      theme = "robbyrussell";
+      plugins = [
+        "git"
+        "history"
+        "history-substring-search"
+      ];
+    };
+
     initExtra = ''
-      export EDITOR="nvim"
+      export EDITOR="vscode"
+      source <(zsh-autocomplete.plugin.zsh)
     '';
   };
 
