@@ -43,7 +43,7 @@ programs.dms-shell = {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "jensnixos"; # Define your hostname.
+  networking.hostName = "jens_nixos"; # Define your hostname.
 
   # Enable networking
   networking.networkmanager.enable = true;
