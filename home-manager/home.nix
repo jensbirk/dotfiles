@@ -12,8 +12,7 @@
     vscode.fhs
     opencode
     zsh-autocomplete
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-  ];
+  ] ++ [ pkgs.nerd-fonts.jetbrains-mono ];
 
   fonts.fontconfig.enable = true;
 
@@ -53,7 +52,7 @@
       ];
     };
 
-    initExtra = ''
+    initContent = ''
       export EDITOR="vscode"
       source <(zsh-autocomplete.plugin.zsh)
     '';

@@ -11,9 +11,10 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.jens = import ../home-manager/home.nix;
+    users.jens = import /home/jens/dotfiles/home-manager/home.nix;
   };
 
+programs.zsh.enable = true;
 programs.niri.enable = true;
 programs.dms-shell = {
   	enable = true;
