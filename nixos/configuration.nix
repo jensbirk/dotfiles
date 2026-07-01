@@ -85,10 +85,10 @@ programs.dms-shell = {
   services.fprintd.enable = true;
   security.pam.services = {
     login.rules.auth = {
-      fprintd = { order = 1000; control = "sufficient"; module = "pam_fprintd.so"; args = ["timeout=3"]; };
+      fprintd = { order = 1000; control = "sufficient"; modulePath = "pam_fprintd.so"; args = ["timeout=3"]; };
     };
     sudo.rules.auth = {
-      fprintd = { order = 1000; control = "sufficient"; module = "pam_fprintd.so"; args = ["timeout=3"]; };
+      fprintd = { order = 1000; control = "sufficient"; modulePath = "pam_fprintd.so"; args = ["timeout=3"]; };
     };
   };
 
