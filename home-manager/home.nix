@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  zsh-autocomplete-plugin = "${pkgs.zsh-autocomplete}/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh";
+in
 {
   home.username = "jens";
   home.homeDirectory = "/home/jens";
@@ -54,7 +57,7 @@
 
     initContent = ''
       export EDITOR="vscode"
-      source <(zsh-autocomplete.plugin.zsh)
+      source ${zsh-autocomplete-plugin}
     '';
   };
 
