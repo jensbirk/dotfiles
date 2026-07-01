@@ -1,17 +1,19 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      <nixos-hardware/framework/13-inch/amd-ai-300-series>
-      <home-manager/nixos>
-    ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    warn-dirty = false;
+  };
 
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.jens = import /home/jens/dotfiles/home-manager/home.nix;
+    users.jens = import ../home-manager/home.nix;
   };
 
 programs.zsh.enable = true;

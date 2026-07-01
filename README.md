@@ -1,26 +1,29 @@
 # dotfiles
 
-NixOS + home-manager configuration.
+NixOS + home-manager configuration using flakes.
 
 ## Structure
 
 ```
+├── flake.nix                  # Flake entry point
+├── .envrc                     # Direnv activation (use flake)
 ├── nixos/
-│   ├── configuration.nix    # System-level config
+│   ├── configuration.nix      # System-level config
 │   └── hardware-configuration.nix  # Auto-generated hardware config
 ├── home-manager/
-│   └── home.nix             # User-level config (packages, shell, etc.)
-└── setup.sh                 # Bootstrap script for a fresh install
+│   └── home.nix               # User-level config (packages, shell, etc.)
+└── setup.sh                   # Bootstrap script for a fresh install
 ```
 
 ## What's configured
 
 | Area | Details |
 |------|---------|
+| **Flakes** | NixOS + home-manager + nixos-hardware as flake inputs |
 | **WM** | niri compositor + dms-shell |
 | **Shell** | zsh with oh-my-zsh, autocomplete, autosuggestions |
 | **Prompt** | starship |
-| **Tools** | zoxide, fzf, neovim |
+| **Tools** | zoxide, fzf, neovim, direnv |
 | **Packages** | ghostty, vscode, firefox, bitwarden, zotero, google-chrome, opencode |
 | **Fonts** | JetBrainsMono Nerd Font |
 | **Services** | tailscale, printing, pipewire, fwupd |
@@ -36,7 +39,7 @@ NixOS + home-manager configuration.
    ```bash
    sudo nixos-generate-config --show-hardware > ~/dotfiles/nixos/hardware-configuration.nix
    ```
-4. Edit `nixos/configuration.nix` to adjust hostname, locale, etc.
+4. Edit `nixos/configuration.nix` to adjust hostname, locale, user, etc.
 5. Run the bootstrap script:
    ```bash
    cd ~/dotfiles && ./setup.sh
@@ -46,26 +49,30 @@ NixOS + home-manager configuration.
 
 - `networking.hostName` in `configuration.nix`
 - `hardware-configuration.nix` (auto-generated per machine)
-- `time.timeZone`
-- `i18n` settings
-- Framework imports (`<nixos-hardware/framework/...>`) — change or remove if not a Framework laptop
+- `time.timeZone` and `i18n` settings
+- `nixos-hardware` module in `flake.nix` — change if not a Framework 13" AMD AI 300
 
 ## Common commands
 
 ```bash
-# Rebuild system (after changing config)
-nixos-rebuild switch
+# Rebuild system using the flake
+nixos-rebuild switch --flake .#jens_nixos
 
-# Update all channels
-sudo nix-channel --update
+# Update flake inputs (lockfile)
+nix flake update
+
+# Rebuild with updates from upstream
+nixos-rebuild switch --flake .#jens_nixos --update-input nixpkgs
 
 # Apply home-manager changes without full rebuild
-home-manager switch
+home-manager switch --flake .#jens_nixos
+
+# Enter dev shell (if .envrc is trusted)
+direnv allow
 ```
 
 ## What's next / ideas
 
-- **Automate dotfiles** — add more Nix-native configs (niri keybinds, ghostty settings, dms-shell theme)
 - **Impermanence** — ephemeral root with persistent state
 - **Stylix** — auto-theming from wallpaper
 - **Auto-upgrades** — `system.autoUpgrade`
