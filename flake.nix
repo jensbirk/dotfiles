@@ -13,12 +13,10 @@
   outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
     in
     {
       nixosConfigurations.jens_nixos = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit pkgs; };
         modules = [
           ./nixos/configuration.nix
           home-manager.nixosModules.home-manager

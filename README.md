@@ -45,6 +45,8 @@ NixOS + home-manager configuration using flakes.
    cd ~/dotfiles && ./setup.sh
    ```
 
+   This symlinks `~/dotfiles` → `/etc/nixos`, so subsequent rebuilds only need `sudo nixos-rebuild switch` (no `--flake` needed).
+
 ### What to customize per machine
 
 - `networking.hostName` in `configuration.nix`
@@ -55,14 +57,14 @@ NixOS + home-manager configuration using flakes.
 ## Common commands
 
 ```bash
-# Rebuild system using the flake
-nixos-rebuild switch --flake .#jens_nixos
+# Rebuild system (works because /etc/nixos -> ~/dotfiles)
+sudo nixos-rebuild switch
 
 # Update flake inputs (lockfile)
 nix flake update
 
 # Rebuild with updates from upstream
-nixos-rebuild switch --flake .#jens_nixos --update-input nixpkgs
+sudo nixos-rebuild switch --update-input nixpkgs
 
 # Apply home-manager changes without full rebuild
 home-manager switch --flake .#jens_nixos

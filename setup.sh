@@ -4,7 +4,6 @@ set -e
 echo "🚀 Starting NixOS configuration setup..."
 
 REPO_DIR="$HOME/dotfiles"
-FLAKE="$REPO_DIR#jens_nixos"
 
 # Safety check
 if [ ! -f "$REPO_DIR/flake.nix" ]; then
@@ -13,11 +12,16 @@ if [ ! -f "$REPO_DIR/flake.nix" ]; then
     exit 1
 fi
 
-# Build the system using the flake.
+# Link repo root to /etc/nixos so `nixos-rebuild switch` works without --flake
+echo "🔗 Linking $REPO_DIR to /etc/nixos..."
+sudo rm -rf /etc/nixos
+sudo ln -s "$REPO_DIR" /etc/nixos
+
+# Build the system.
 # NIX_CONFIG enables flakes for this command on a fresh install.
-echo "🔨 Building system with flake..."
+echo "🔨 Building system..."
 NIX_CONFIG="experimental-features = nix-command flakes" \
-  sudo nixos-rebuild switch --flake "$FLAKE"
+  sudo nixos-rebuild switch
 
 echo "✅ Setup complete! Your dotfiles are active."
 echo ""
