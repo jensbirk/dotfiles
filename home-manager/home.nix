@@ -21,8 +21,10 @@ in
 
   programs.git = {
     enable = true;
-    userName = "Jens Birk Andersen";
-    userEmail = "jens.birk.andersen@gmail.com";
+    settings = {
+      user.name = "Jens Birk Andersen";
+      user.email = "jens.birk.andersen@gmail.com";
+    };
   };
 
   programs.starship = {
