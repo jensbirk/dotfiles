@@ -138,6 +138,8 @@ programs.dms-shell = {
   wget
   apple-cursor
   git
+  hicolor-icon-theme
+  gnome-icon-theme
   ];
 
 xdg.portal = {
