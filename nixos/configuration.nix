@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -84,7 +84,7 @@ programs.dms-shell = {
   # Fingerprint reader
   services.fprintd.enable = true;
   security.pam.services = {
-    login.fprintAuth = true;
+    login.fprintAuth = lib.mkForce true;
     sudo.fprintAuth = true;
   };
   systemd.services.fprintd.environment.FPRINTD_CONF = "/etc/fprintd.conf";
