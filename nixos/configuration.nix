@@ -84,12 +84,12 @@ programs.dms-shell = {
   # Fingerprint reader
   services.fprintd.enable = true;
   security.pam.services = {
-    login.rules.auth = [
-      { order = 1000; control = "sufficient"; module = "pam_fprintd.so"; args = ["timeout=3"]; }
-    ];
-    sudo.rules.auth = [
-      { order = 1000; control = "sufficient"; module = "pam_fprintd.so"; args = ["timeout=3"]; }
-    ];
+    login.rules.auth = {
+      fprintd = { order = 1000; control = "sufficient"; module = "pam_fprintd.so"; args = ["timeout=3"]; };
+    };
+    sudo.rules.auth = {
+      fprintd = { order = 1000; control = "sufficient"; module = "pam_fprintd.so"; args = ["timeout=3"]; };
+    };
   };
 
   # Tailscale
