@@ -19,13 +19,6 @@ in
 
   fonts.fontconfig.enable = true;
 
-  xdg.configFile = {
-    "ghostty".source = ../config/ghostty;
-    "niri".source = ../config/niri;
-    "opencode".source = ../config/opencode;
-    "DankMaterialShell".source = ../config/DankMaterialShell;
-  };
-
   programs.git = {
     enable = true;
     settings = {
