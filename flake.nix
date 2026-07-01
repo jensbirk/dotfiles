@@ -15,7 +15,7 @@
       system = "x86_64-linux";
     in
     {
-      nixosConfigurations.jens_nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.jensnixos = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
           ./nixos/configuration.nix
