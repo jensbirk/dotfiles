@@ -67,7 +67,7 @@ nix flake update
 sudo nixos-rebuild switch --update-input nixpkgs
 
 # Apply home-manager changes without full rebuild
-home-manager switch --flake .#jens_nixos
+home-manager switch --flake .#jensnixos
 
 # Enter dev shell (if .envrc is trusted)
 direnv allow
