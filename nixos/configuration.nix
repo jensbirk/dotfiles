@@ -129,6 +129,7 @@ programs.dms-shell = {
     allowUnfree = true;
     permittedInsecurePackages = [
       "electron-39.8.10" # this is for bitwarden
+      "libsoup-2.74.3" # required by some packages
     ];
   };
 
@@ -140,6 +141,7 @@ programs.dms-shell = {
   git
   hicolor-icon-theme
   gnome-icon-theme
+  xwayland-satellite
   ];
 
 xdg.portal = {
