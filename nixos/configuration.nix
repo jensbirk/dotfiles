@@ -106,12 +106,12 @@ programs.dms-shell = {
     pulse.enable = true;
   };
 
-
+  security.tpm2.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."jens" = {
     isNormalUser = true;
     description = "Jens";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "tss" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
     #  thunderbird

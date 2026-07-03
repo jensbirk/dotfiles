@@ -8,6 +8,7 @@ in
   home.homeDirectory = "/home/jens";
 
   home.packages = with pkgs; [
+    teleport
     google-chrome
     ghostty
     bitwarden-desktop
@@ -16,6 +17,8 @@ in
     opencode
     zsh-autocomplete
     spotify
+    discord
+    localsend
   ] ++ [ pkgs.nerd-fonts.jetbrains-mono ];
 
   fonts.fontconfig.enable = true;
