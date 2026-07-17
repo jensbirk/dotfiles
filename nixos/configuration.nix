@@ -107,11 +107,14 @@ programs.dms-shell = {
   };
 
   security.tpm2.enable = true;
+
+  virtualisation.libvirtd.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."jens" = {
     isNormalUser = true;
     description = "Jens";
-    extraGroups = [ "networkmanager" "wheel" "tss" ];
+    extraGroups = [ "networkmanager" "wheel" "tss" "libvirtd" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
     #  thunderbird
@@ -141,6 +144,7 @@ programs.dms-shell = {
   git
   hicolor-icon-theme
   gnome-icon-theme
+  virt-manager
   xwayland-satellite
   ];
 
