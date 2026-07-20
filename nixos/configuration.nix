@@ -17,6 +17,7 @@
   };
 
 programs.zsh.enable = true;
+programs.nix-ld.enable = true;
 programs.niri.enable = true;
 programs.dms-shell = {
   	enable = true;
@@ -144,6 +145,7 @@ programs.dms-shell = {
   git
   hicolor-icon-theme
   gnome-icon-theme
+  uv
   virt-manager
   xwayland-satellite
   ];
@@ -162,6 +164,9 @@ xdg.portal = {
   
   # --- Cursor
   programs.dconf.enable = true; # Ensures GTK settings can be read properly
+  environment.sessionVariables = {
+    LIBVIRT_DEFAULT_URI = "qemu:///system";
+  };
   environment.variables = {
     XCURSOR_THEME = "Adwaita";
     XCURSOR_SIZE = "24"; 
