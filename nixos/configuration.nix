@@ -110,6 +110,10 @@ programs.dms-shell = {
   security.tpm2.enable = true;
 
   virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.qemu.swtpm.enable = true;
+  systemd.tmpfiles.rules = [
+    "d /var/lib/swtpm-localca 0700 tss tss -"
+  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."jens" = {
@@ -140,14 +144,15 @@ programs.dms-shell = {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  wget
-  apple-cursor
-  git
-  hicolor-icon-theme
-  gnome-icon-theme
-  uv
-  virt-manager
-  xwayland-satellite
+   wget
+   apple-cursor
+   git
+   git-lfs
+   hicolor-icon-theme
+   gnome-icon-theme
+   uv
+   virt-manager
+   xwayland-satellite
   ];
 
 xdg.portal = {

@@ -13,6 +13,8 @@ in
     ghostty
     bitwarden-desktop
     zotero
+    inkscape
+    onlyoffice-desktopeditors
     obsidian
     vscode.fhs
     opencode
